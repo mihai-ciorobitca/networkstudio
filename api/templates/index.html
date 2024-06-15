@@ -13,14 +13,25 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md bg-light">
-        <div class="container-fluid"><a class = "text-dark" href="#" class="navbar-brand">Network Studio</a><button data-toggle="collapse"
-                data-target="#navcol-3" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span
-                    class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-3">
-                <ul class="nav navbar-nav">
-                    <li role="presentation" class="nav-item"><a class = "text-dark" href="#" class="nav-link active">First Item</a></li>
-                    <li role="presentation" class="nav-item"><a class = "text-dark" href="#" class="nav-link">Second Item</a></li>
-                    <li role="presentation" class="nav-item"><a class = "text-dark" href="#" class="nav-link">Third Item</a></li>
+        <div class="container-fluid">
+            <div class="navbar-brand text-dark col-3">
+                Network Studio
+            </div>
+            <button data-toggle="collapse" data-target="#navcol-3" class="navbar-toggler collapsed">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse col-9" id="navcol-3">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/portofolio">Portofolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -30,31 +41,32 @@
         <div class="d-flex justify-content-center">
             <div class="row p-3" style="width: 500px;">
                 <div class="col-3">
-                    <a class = "text-dark" href="https://github.com/mihai-ciorobitca/" style="cursor: pointer;">
+                    <a class="text-dark" href="https://github.com/mihai-ciorobitca/" style="cursor: pointer;">
                         <i class="fa fa-2x fa-github"></i>
                     </a>
                 </div>
                 <div class="col-3">
-                    <a class = "text-dark" href="https://linkedin.com/in/mihai.ciorobitca/" style="cursor: pointer;">
+                    <a class="text-dark" href="https://linkedin.com/in/mihai.ciorobitca/" style="cursor: pointer;">
                         <i class="fa fa-2x fa-linkedin"></i>
                     </a>
                 </div>
                 <div class="col-3">
-                    <a class = "text-dark" href="https://facebook.com/m.ciorobitca/" style="cursor: pointer;">
+                    <a class="text-dark" href="https://facebook.com/m.ciorobitca/" style="cursor: pointer;">
                         <i class="fa fa-2x fa-facebook"></i>
                     </a>
                 </div>
                 <div class="col-3">
-                    <a class = "text-dark" href="https://youtube.com/@mihai.ciorobitca/" style="cursor: pointer;">
+                    <a class="text-dark" href="https://youtube.com/@mihai.ciorobitca/" style="cursor: pointer;">
                         <i class="fa fa-2x fa-youtube"></i>
                     </a>
                 </div>
             </div>
         </div>
-        <p class="copyright py-2">© 2024 Network Studio. All rights reserved</p>
+        <p class="copyright py-4">© 2024 Network Studio. All rights reserved</p>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
