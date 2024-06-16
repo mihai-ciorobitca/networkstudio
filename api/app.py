@@ -6,14 +6,13 @@ app = Flask(__name__, template_folder='templates')
 def index():
     return render_template('index.html')
 
-@app.route('/travel-time-minimization')
-def travel_time_minimization():
-    return render_template('travel-time-minimization.html')
-
 @app.route('/login')
 def login():
     return render_template('login.html')
 
+@app.route('/videos')
+def videos():
+    return render_template('videos.html')
 
 @app.route('/assets/<path:filename>')
 def custom_static(filename):
