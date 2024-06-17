@@ -2,6 +2,10 @@ from flask import Flask, render_template, send_from_directory, redirect
 
 app = Flask(__name__, template_folder='templates')
 
+links = {
+    "Mr. Robot Season 1 Episode 1": "https://jumpshare.com/embed/3YfW74SSdJQ8rjFRbVf6",
+}
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -12,7 +16,7 @@ def login():
 
 @app.route('/videos')
 def videos():
-    return render_template('videos.html')
+    return render_template('videos.html', links)
 
 @app.route('/travel-time-minimization')
 def travel_time_minimization():
