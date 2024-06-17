@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, redirect
 
 app = Flask(__name__, template_folder='templates')
 
@@ -13,6 +13,10 @@ def login():
 @app.route('/videos')
 def videos():
     return render_template('videos.html')
+
+@app.route('/travel-time-minimization')
+def travel_time_minimization():
+    return redirect('https://travel-time-minimization.vercel.app')
 
 @app.route('/assets/<path:filename>')
 def custom_static(filename):
