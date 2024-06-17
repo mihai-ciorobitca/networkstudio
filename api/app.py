@@ -4,6 +4,7 @@ app = Flask(__name__, template_folder='templates')
 
 links = {
     "Mr. Robot Season 1 Episode 1": "https://jumpshare.com/embed/3YfW74SSdJQ8rjFRbVf6",
+    "Mr. Robot Season 1 Episode 2": "https://jumpshare.com/embed/7stUTPqXwLby4vekXRSD",
 }
 
 @app.route('/')
@@ -16,7 +17,7 @@ def login():
 
 @app.route('/videos')
 def videos():
-    return render_template('videos.html', links)
+    return render_template('videos.html', links=links.values())
 
 @app.route('/travel-time-minimization')
 def travel_time_minimization():

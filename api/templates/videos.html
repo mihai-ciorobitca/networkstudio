@@ -10,13 +10,13 @@
 </head>
 
 <body>
-    {{% for _, link in links.items %}}
+    {% for link in links %}
     <div class="container-fluid">
         <div class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" src="{{link}}" allowfullscreen></iframe>
         </div>
     </div>
-    {{% endfor %}}
+    {% endfor %}
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -24,6 +24,7 @@
 </body>
 
 </html>
+
 
 
 
