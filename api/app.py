@@ -20,11 +20,6 @@ def login():
 def travel_time_minimization():
     return redirect('https://travel-time-minimization.vercel.app')
 
-def create_route(endpoint, url):
-    def generic_route():
-        return render_template('video.html', url=url)
-    app.add_url_rule(f'/{endpoint}', endpoint, generic_route)
-
 @app.route('/videos/', defaults={'name': None, 'season': None, 'episode': None})
 @app.route('/videos/<name>/', defaults={'season': None, 'episode': None})
 @app.route('/videos/<name>/<season>/', defaults={'episode': None})
