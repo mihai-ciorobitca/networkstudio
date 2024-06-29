@@ -28,5 +28,7 @@ def create_route(endpoint, url):
 @app.route('/videos/<name>/<season>/<episode>')
 def video_route(name, season, episode):
     response = supabase_client.table('movies').select('*').eq('name', name).eq('season', season).eq('episode', episode).execute()
+    if len(response.data) == 0:
+        return render_template('page_404.html')
     url = response.data[0]['link']
     return render_template('video.html', url=url)
