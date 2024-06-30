@@ -43,13 +43,13 @@ def video_route(name, season, episode):
     
     if not name and not season and not episode:
         names = list(set(map(lambda x: x["name"], response.data)))
-        return render_template('names.html', names=names)
+        return render_template('names.html', names=sorted(names))
     elif not season and not episode:
         seasons = list(set(map(lambda x: x["season"], response.data)))
-        return render_template('seasons.html', seasons=seasons, name=name)
+        return render_template('seasons.html', seasons=sorted(seasons), name=name)
     elif season and not episode:
         episodes = list(set(map(lambda x: x["episode"], response.data)))
-        return render_template('episodes.html', episodes=episodes, name=name, season=season)
+        return render_template('episodes.html', episodes=sorted(episodes), name=name, season=season)
     else:
         url = response.data[0]['link']
         return render_template('video.html', url=url)
