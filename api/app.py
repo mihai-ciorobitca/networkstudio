@@ -1,5 +1,11 @@
-from flask import Flask, render_template, send_from_directory, redirect
+from flask import Flask, render_template, redirect
 from supabase import create_client, Client
+from flask_caching import Cache
+
+config = {
+    "CACHE_TYPE": "SimpleCache",
+    "CACHE_DEFAULT_TIMEOUT": 300
+}
 
 URL_BASE = 'https://qfvhxwctxqrtemtysrrx.supabase.co'
 SECRET_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmdmh4d2N0eHFydGVtdHlzcnJ4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxOTY2MzAzMiwiZXhwIjoyMDM1MjM5MDMyfQ.JZ9YSF8o-Jgmxv0ePW4suSsYyD_KmPIpgxqrPrjQpNA'
@@ -7,6 +13,9 @@ SECRET_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZ
 supabase_client: Client = create_client(URL_BASE, SECRET_KEY)
 
 app = Flask(__name__, template_folder='templates')
+
+app.config.from_mapping(config)
+cache = Cache(app)
 
 @app.route('/')
 def index():
@@ -24,7 +33,9 @@ def travel_time_minimization():
 @app.route('/videos/<name>/', defaults={'season': None, 'episode': None})
 @app.route('/videos/<name>/<season>/', defaults={'episode': None})
 @app.route('/videos/<name>/<season>/<episode>/')
+@cache.cached(timeout=10)
 def video_route(name, season, episode):
+    print("Caching")
     query = supabase_client.table('movies').select('*')
     
     if name:
