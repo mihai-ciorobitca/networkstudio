@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request, abort, send_from_directory
 from supabase import create_client, Client
 from flask_caching import Cache
 
@@ -35,7 +35,6 @@ def travel_time_minimization():
 @app.route('/videos/<name>/<season>/<episode>/')
 @cache.cached(timeout=10)
 def video_route(name, season, episode):
-    print("Caching")
     query = supabase_client.table('movies').select('*')
     
     if name:
@@ -63,4 +62,5 @@ def video_route(name, season, episode):
         return render_template('episodes.html', episodes=sorted(episodes), name=name, season=season)
     else:
         url = response.data[0]['link']
+        print(url)
         return render_template('video.html', url=url)
