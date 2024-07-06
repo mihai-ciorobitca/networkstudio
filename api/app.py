@@ -29,6 +29,10 @@ def login():
 def travel_time_minimization():
     return redirect('https://travel-time-minimization.vercel.app')
 
+@app.errorhandler(404)
+def page_404(_):
+    return render_template('page_404.html')
+
 @app.route('/videos/', defaults={'name': None, 'season': None, 'episode': None, 'part': None})
 @app.route('/videos/name/<name>/', defaults={'season': None, 'episode': None, 'part': None})
 @app.route('/videos/name/<name>/part/<part>/', defaults={'season': None, 'episode': None})
@@ -37,7 +41,6 @@ def travel_time_minimization():
 @cache.cached(timeout=10)
 def video_route(name, season, episode, part):
     query = supabase_client.table('movies').select('*')
-    
     if name:
         query = query.eq('name', name)
         if season:
