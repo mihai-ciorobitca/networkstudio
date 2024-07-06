@@ -34,10 +34,10 @@ def page_404(_):
     return render_template('page_404.html')
 
 @app.route('/videos/', defaults={'name': None, 'season': None, 'episode': None, 'part': None})
-@app.route('/videos/name/<name>/', defaults={'season': None, 'episode': None, 'part': None})
-@app.route('/videos/name/<name>/part/<part>/', defaults={'season': None, 'episode': None})
-@app.route('/videos/name/<name>/season/<season>/', defaults={'episode': None, 'part': None})
-@app.route('/videos/name/<name>/season/<season>/episode/<episode>/', defaults={'part': None})
+@app.route('/videos/name=<name>/', defaults={'season': None, 'episode': None, 'part': None})
+@app.route('/videos/name=<name>/part=<part>/', defaults={'season': None, 'episode': None})
+@app.route('/videos/name=<name>/season=<season>/', defaults={'episode': None, 'part': None})
+@app.route('/videos/name=<name>/season=<season>/episode=<episode>/', defaults={'part': None})
 @cache.cached(timeout=10)
 def video_route(name, season, episode, part):
     query = supabase_client.table('movies').select('*')
