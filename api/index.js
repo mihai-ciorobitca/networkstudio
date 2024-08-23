@@ -26,11 +26,6 @@ app.get('/login', (req, res) => {
   res.render('login');
 });
 
-app.get('/travel-time-minimization', (req, res) => {
-  // Redirect to the Travel Time Minimization application
-  res.redirect('https://travel-time-minimization.vercel.app');
-});
-
 app.use((req, res, next) => {
   // Page not found
   res.status(404).render('page_404');
