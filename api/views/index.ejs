@@ -11,32 +11,50 @@
     <meta name="keywords" content="Network, Learning, Free, Python, Programming, Studio">
     <meta name="author" content="Network Studio">
     <meta name="description" content="Network community for free programming learning ">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="icon" href="assets/logo.png">
     <script>
-        function adjustCarouselHeight() {
-            var navHeight = document.getElementById('mainNav').offsetHeight;
-            var footerHeight = document.getElementById('mainFooter').offsetHeight;
-            var carousel = document.querySelector('#carouselSection');
-
-            // Set the height of carousel and its inner items
-            var carouselHeight = window.innerHeight - navHeight - footerHeight;
-            carousel.style.height = carouselHeight + 'px';
-            var carouselInner = document.querySelector('.carousel-inner');
-            carouselInner.style.height = '100%';
-            carouselInner.style.alignContent = 'center';
-            // Select all elements with the class 'carousel-item'
-            var carouselItems = document.querySelectorAll('.carousel-item');
-
-            // Iterate over each selected element
-            carouselItems.forEach(item => {
-                // Apply styles to each element
-                item.style.maxWidth = '80%';
-                item.style.margin = 'auto';
-                item.style.height = '100%';
-                item.style.alignContent = 'center';
+        $(document).ready(function () {
+            function checkScreenSize() {
+                if ($(window).width() < 768) {
+                    $('.nav-item.dropdown').addClass('d-none');
+                    $('.nav-item.d-md-none').removeClass('d-none');
+                } else {
+                    $('.nav-item.dropdown').removeClass('d-none');
+                    $('.nav-item.d-md-none').addClass('d-none');
+                }
+            }
+            checkScreenSize();
+            $(window).resize(function () {
+                checkScreenSize();
             });
 
+            $('#navcol-3').on('shown.bs.collapse hidden.bs.collapse', function () {
+                adjustCarouselHeight();
+            });
+        });
+        function adjustCarouselHeight() {
+            var navHeight = $('#mainNav').outerHeight(); // Use .outerHeight() to get the height
+            var footerHeight = $('#mainFooter').outerHeight(); // Use .outerHeight() to get the height
+            var carousel = $('#carouselSection');
+            var carouselHeight = $(window).height() - navHeight - footerHeight;
+            carousel.css('height', carouselHeight + 'px'); // Use .css() to set the height
+
+            var carouselInner = $('.carousel-inner'); // Add the '.' to select by class
+            carouselInner.css({
+                'height': '100%',
+                'align-content': 'center'
+            });
+
+            var carouselItems = $('.carousel-item'); // Use jQuery selector for all items
+            carouselItems.css({
+                'max-width': '80%',
+                'margin': 'auto',
+                'height': '100%',
+                'align-content': 'center'
+            });
         }
+
         window.addEventListener('load', adjustCarouselHeight);
         window.addEventListener('resize', adjustCarouselHeight);
     </script>
@@ -49,6 +67,19 @@
             top: 50%;
             transform: translateY(-50%);
         }
+
+        .navbar-toggler .fa-times {
+            display: none;
+        }
+
+        /* When the navbar is expanded (open), hide hamburger, show close icon */
+        .navbar-toggler[aria-expanded="true"] .fa-bars {
+            display: none !important;
+        }
+
+        .navbar-toggler[aria-expanded="true"] .fa-times {
+            display: inline-block !important;
+        }
     </style>
 </head>
 
@@ -59,18 +90,19 @@
                 Network Studio
             </div>
             <button data-toggle="collapse" data-target="#navcol-3" class="navbar-toggler collapsed">
-                <span class="navbar-toggler-icon"></span>
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-times d-none"></i>
             </button>
             <div class="navbar-collapse collapse col-9" id="navcol-3">
                 <ul class="navbar-nav ml-auto">
                     <!-- Collaborations Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <li class="nav-item dropdown d-none d-md-block">
+                        <a class="nav-link dropdown-toggle" href="#" id="collaborationsDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-users"></i> Collaborations
                         </a>
                         <div class="dropdown-menu dropdown-menu-right p-2 shadow-lg rounded"
-                            aria-labelledby="navbarDropdown">
+                            aria-labelledby="collaborationsDropdown">
                             <a class="dropdown-item d-flex align-items-center"
                                 href="https://manners-chat.onrender.com/">
                                 <i class="fas fa-comments text-primary mr-2"></i> Manners Chat
@@ -78,19 +110,25 @@
                             <a class="dropdown-item d-flex align-items-center" href="https://rrconsultants.ro/">
                                 <i class="fas fa-briefcase text-primary mr-2"></i> RR Consultants
                             </a>
-                            <a class="dropdown-item d-flex align-items-center" href="https://web-studio-pro.vercel.app/">
+                            <a class="dropdown-item d-flex align-items-center"
+                                href="https://web-studio-pro.vercel.app/">
                                 <i class="fas fa-laptop-code text-primary mr-2"></i> Web Studio
                             </a>
                         </div>
                     </li>
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#collaborationsModal">
+                            <i class="fas fa-users"></i> Collaborations
+                        </a>
+                    </li>
                     <!-- Personal Projects Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <li class="nav-item dropdown d-none d-md-block">
+                        <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-lightbulb"></i> Personal Projects
                         </a>
                         <div class="dropdown-menu dropdown-menu-right p-2 shadow-lg rounded"
-                            aria-labelledby="navbarDropdown">
+                            aria-labelledby="projectsDropdown">
                             <a class="dropdown-item d-flex align-items-center" href="https://expert-web.vercel.app/">
                                 <i class="fas fa-book text-primary mr-2"></i> My Course
                             </a>
@@ -108,11 +146,72 @@
                             </a>
                         </div>
                     </li>
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#projectsModal">
+                            <i class="fas fa-lightbulb"></i> Personal Projects
+                        </a>
+                    </li>
                 </ul>
             </div>
-
         </div>
     </nav>
+
+    <!-- Modals for small screens -->
+    <!-- Collaborations Modal -->
+    <div class="modal fade" id="collaborationsModal" tabindex="-1" aria-labelledby="collaborationsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="collaborationsModalLabel">Collaborations</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <a class="dropdown-item d-flex align-items-center" href="https://manners-chat.onrender.com/">
+                        <i class="fas fa-comments text-primary mr-2"></i> Manners Chat
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="https://rrconsultants.ro/">
+                        <i class="fas fa-briefcase text-primary mr-2"></i> RR Consultants
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="https://web-studio-pro.vercel.app/">
+                        <i class="fas fa-laptop-code text-primary mr-2"></i> Web Studio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Personal Projects Modal -->
+    <div class="modal fade" id="projectsModal" tabindex="-1" aria-labelledby="projectsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="projectsModalLabel">Personal Projects</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <a class="dropdown-item d-flex align-items-center" href="https://expert-web.vercel.app/">
+                        <i class="fas fa-book text-primary mr-2"></i> My Course
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="https://mihai-bookstore.vercel.app/">
+                        <i class="fas fa-store text-primary mr-2"></i> Book Store
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center"
+                        href="https://travel-time-minimization.vercel.app">
+                        <i class="fas fa-globe text-primary mr-2"></i> Roundabout Simulator
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="https://netflex-studio.vercel.app/">
+                        <i class="fas fa-video text-primary mr-2"></i> Netflex
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div id="carouselSection" class="carousel carousel-fade" data-ride="carousel" data-interval="3000"
         style="background-color: #e9ecef;">
