@@ -8,6 +8,10 @@ const info = [
     "text": "Use Vercel or Render for FREE"
   },
   {
+    "title": "I lost my phone, what can I do?",
+    "text": "Use Globfone to make a call for free"
+  },
+  {
     "title": "How to download videos free?",
     "text": "Convert m3u8 file into mp4"
   },
