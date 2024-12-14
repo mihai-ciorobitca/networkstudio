@@ -42,6 +42,10 @@ app.get('/', (req, res) => {
   res.render('index', {info: info});
 });
 
+app.get('/resume', (req, res) => {
+  res.render('resume');
+});
+
 app.use((req, res, next) => {
   res.status(404).render('page_404');
 });
