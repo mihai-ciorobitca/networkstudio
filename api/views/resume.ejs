@@ -6,6 +6,11 @@
     <title>CV - Ciorobitca Mihai</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+        }
         .section-title {
             color: #0056b3;
         }
@@ -21,6 +26,20 @@
         }
         .work-experience-details {
             padding-left: 20px;
+        }
+        @media print {
+            .container {
+                border: 1px solid #000;
+                padding: 20px;
+                page-break-inside: avoid;
+            }
+            .section-title {
+                color: #000;
+                font-weight: bold;
+            }
+            .work-experience {
+                page-break-inside: avoid;
+            }
         }
     </style>
 </head>
