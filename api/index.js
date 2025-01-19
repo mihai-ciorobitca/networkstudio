@@ -3,7 +3,8 @@ const path = require('path');
 const apicache = require('apicache');
 const cors = require("cors");
 
-const info = [{
+const info = [
+    {
         "title": "Where to host my website?",
         "text": "Use Vercel or Render for FREE"
     },
@@ -27,6 +28,10 @@ const info = [{
         "title": "How to host real time chat app?",
         "text": "Upload docker container on Render"
     },
+    {
+        "title": "What to use for client assistant?",
+        "text": "You can use Crisp, Tawk or 3CX"
+    }
 ]
 
 const app = express();

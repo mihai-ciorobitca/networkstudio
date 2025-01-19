@@ -147,6 +147,9 @@
                                 href="https://netflex-studio.vercel.app/">
                                 <i class="fas fa-video text-primary mr-2"></i> Netflex
                             </a>
+                            <a class="dropdown-item d-flex align-items-center" href="https://monthly-book.vercel.app/">
+                                <i class="fas fa-book text-primary mr-2"></i> Monthly Book
+                            </a>
                         </div>
                     </li>
                     <li class="nav-item d-md-none">
@@ -222,19 +225,23 @@
     <div id="carouselSection" class="carousel carousel-fade" data-ride="carousel" data-interval="3000"
         style="background-color: #e9ecef;">
         <div class="carousel-inner">
-            <% for(let i = 0; i < info.length; i++) { %>
+            <% for(let i=0; i < info.length; i++) { %>
                 <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
                     <div class="wraper-div">
                         <div class="text-center">
-                            <h3><%= info[i].title %></h3>
-                            <p><%= info[i].text %></p>
+                            <h3>
+                                <%= info[i].title %>
+                            </h3>
+                            <p>
+                                <%= info[i].text %>
+                            </p>
                             <a href="#" class="btn btn-primary">Learn More</a>
                         </div>
                     </div>
                 </div>
-            <% } %>
+                <% } %>
         </div>
-        
+
         <a class="carousel-control-prev" href="#carouselSection" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -284,7 +291,8 @@
         </div>
     </footer>
 
-    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="22779028-9326-49a8-a3e3-98975073c026";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <script
+        type="text/javascript">window.$crisp = []; window.CRISP_WEBSITE_ID = "22779028-9326-49a8-a3e3-98975073c026"; (function () { d = document; s = d.createElement("script"); s.src = "https://client.crisp.chat/l.js"; s.async = 1; d.getElementsByTagName("head")[0].appendChild(s); })();</script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
